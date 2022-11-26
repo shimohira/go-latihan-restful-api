@@ -1,0 +1,92 @@
+GET http://localhost:3000/api/categories
+X-API-Key: SECRET
+Accept: application/json
+
+<> 2022-11-27T010644.200.json
+
+###
+
+DELETE http://localhost:3000/api/categories/1
+X-API-Key: SECRET
+Accept: application/json
+
+<> 2022-11-27T010637.200.json
+
+###
+
+PUT http://localhost:3000/api/categories/2
+X-API-Key: SECRET
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name" : "Computer"
+}
+
+<> 2022-11-27T010633.200.json
+
+###
+
+GET http://localhost:3000/api/categories/2
+X-API-Key: SECRET
+Accept: application/json
+
+<> 2022-11-27T010629.200.json
+
+###
+
+GET http://localhost:3000/api/categories
+X-API-Key: SECRET
+Accept: application/json
+
+<> 2022-11-27T010617.200.json
+
+###
+
+POST http://localhost:3000/api/categories
+X-API-Key: SECRET
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name" : "gadget"
+}
+
+<> 2022-11-27T010615.200.json
+
+###
+
+POST http://localhost:3000/api/categories
+X-API-Key: SECRET
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name" : "Food"
+}
+
+<> 2022-11-27T010611.200.json
+
+###
+
+POST http://localhost:3000/api/categories
+X-API-Key: SECRET
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name" : ""
+}
+
+<> 2022-11-27T010601.400.json
+
+###
+
+GET http://localhost:3000/api/categories
+X-API-Key: SECRET
+Accept: application/json
+
+<> 2022-11-27T010556.200.json
+
+###
+

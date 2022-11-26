@@ -1,0 +1,10 @@
+{
+  "code": 200,
+  "status": "OK",
+  "data": [
+    {
+      "id": 2,
+      "name": "Computer"
+    }
+  ]
+}

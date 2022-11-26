@@ -10,16 +10,16 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "name" : ""
+  "name" : "gadget"
 }
 
 ### Get categori by id
-GET http://localhost:3000/api/categories/999
+GET http://localhost:3000/api/categories/2
 X-API-Key: SECRET
 Accept: application/json
 
 ### Update category by id
-PUT http://localhost:3000/api/categories/999
+PUT http://localhost:3000/api/categories/2
 X-API-Key: SECRET
 Accept: application/json
 Content-Type: application/json
