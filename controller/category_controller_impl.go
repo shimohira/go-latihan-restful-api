@@ -13,11 +13,17 @@ type CategoryControllerImpl struct {
 	CategoryService service.CategoryService
 }
 
+// Duplicate Constructure
+func NewCategoryControllerImpl(categoryService service.CategoryService) *CategoryControllerImpl {
+	return &CategoryControllerImpl{
+		CategoryService: categoryService,
+	}
+}
+
 func NewCategoryController(categoryService service.CategoryService) CategoryController {
 	return &CategoryControllerImpl{
 		CategoryService: categoryService,
 	}
-
 }
 
 func (controller *CategoryControllerImpl) Create(w http.ResponseWriter, r *http.Request, params httprouter.Params) {

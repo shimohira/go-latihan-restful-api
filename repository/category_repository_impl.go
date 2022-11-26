@@ -11,6 +11,11 @@ import (
 type CategoryRepositoryImpl struct {
 }
 
+// Duplicate Constructore
+func NewCategoryRepositoryImpl() *CategoryRepositoryImpl {
+	return &CategoryRepositoryImpl{}
+}
+
 func NewCategoryRepository() CategoryRepository {
 	return &CategoryRepositoryImpl{}
 }

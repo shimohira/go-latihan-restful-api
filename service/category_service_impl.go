@@ -17,7 +17,8 @@ type CategoryServiceImpl struct {
 	Validate           *validator.Validate
 }
 
-func NewCategoryService(categoryRepository repository.CategoryRepository, DB *sql.DB, validate *validator.Validate) CategoryService {
+// Duplicate Constructore
+func NewCategoryServiceImpl(categoryRepository repository.CategoryRepository, DB *sql.DB, validate *validator.Validate) *CategoryServiceImpl {
 	return &CategoryServiceImpl{
 		CategoryRepository: categoryRepository,
 		DB:                 DB,
@@ -25,8 +26,12 @@ func NewCategoryService(categoryRepository repository.CategoryRepository, DB *sq
 	}
 }
 
-func NewCategoryServiceImpl() *CategoryServiceImpl {
-	return &CategoryServiceImpl{}
+func NewCategoryService(categoryRepository repository.CategoryRepository, DB *sql.DB, validate *validator.Validate) CategoryService {
+	return &CategoryServiceImpl{
+		CategoryRepository: categoryRepository,
+		DB:                 DB,
+		Validate:           validate,
+	}
 }
 
 func (service *CategoryServiceImpl) Create(ctx context.Context, request web.CategoryCreateRequest) web.CategoryResponse {
