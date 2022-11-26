@@ -3,8 +3,8 @@ package service
 import (
 	"context"
 	"database/sql"
-	"fmt"
 	"github.com/go-playground/validator/v10"
+	"latihan-restful-api/exception"
 	"latihan-restful-api/helper"
 	"latihan-restful-api/model/domain"
 	"latihan-restful-api/model/web"
@@ -54,7 +54,9 @@ func (service *CategoryServiceImpl) Update(ctx context.Context, request web.Cate
 	defer helper.CommitOrRollback(tx)
 
 	category, err := service.CategoryRepository.FindById(ctx, tx, request.Id)
-	helper.PanicIfError(err)
+	if err != nil {
+		panic(exception.NewNotFoundError(err.Error()))
+	}
 
 	category.Name = request.Name
 	service.CategoryRepository.Update(ctx, tx, category)
@@ -63,25 +65,33 @@ func (service *CategoryServiceImpl) Update(ctx context.Context, request web.Cate
 }
 
 func (service *CategoryServiceImpl) Delete(ctx context.Context, categoryId int) {
+	err := service.Validate.Var(categoryId, "required")
+	helper.PanicIfError(err)
+
 	tx, err := service.DB.Begin()
 	helper.PanicIfError(err)
 	defer helper.CommitOrRollback(tx)
 
 	category, err := service.CategoryRepository.FindById(ctx, tx, categoryId)
-	helper.PanicIfError(err)
+	if err != nil {
+		panic(exception.NewNotFoundError(err.Error()))
+	}
 
 	service.CategoryRepository.Delete(ctx, tx, category.Id)
 }
 
 func (service *CategoryServiceImpl) FindById(ctx context.Context, categoryId int) web.CategoryResponse {
+	err := service.Validate.Var(categoryId, "required")
+	helper.PanicIfError(err)
+
 	tx, err := service.DB.Begin()
 	helper.PanicIfError(err)
 	defer helper.CommitOrRollback(tx)
 
-	category, err2 := service.CategoryRepository.FindById(ctx, tx, categoryId)
-	fmt.Println("service", category)
-	helper.PanicIfError(err2)
-	fmt.Println("FindById after panic")
+	category, err := service.CategoryRepository.FindById(ctx, tx, categoryId)
+	if err != nil {
+		panic(exception.NewNotFoundError(err.Error()))
+	}
 
 	return helper.ToCategoryResponse(category)
 }

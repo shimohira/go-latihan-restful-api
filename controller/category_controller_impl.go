@@ -1,7 +1,6 @@
 package controller
 
 import (
-	"fmt"
 	"github.com/julienschmidt/httprouter"
 	"latihan-restful-api/helper"
 	"latihan-restful-api/model/web"
@@ -72,7 +71,6 @@ func (controller *CategoryControllerImpl) FindById(w http.ResponseWriter, r *htt
 	helper.PanicIfError(err)
 
 	categoryResponse := controller.CategoryService.FindById(r.Context(), categoryId)
-	fmt.Println("controller", categoryResponse)
 	webResponse := web.WebResponse{
 		Code:   200,
 		Status: "OK",
